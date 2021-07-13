@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run" type="Application" factoryName="Application">
+    <envs>
+      <env name="LOGSTASH_PROXY" value="localhost" />
+      <env name="HOME" value="." />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.example.demoelk.DemoElkApplication" />
+    <module name="demo-elk" />
+    <option name="VM_PARAMETERS" value="-Dspring.profiles.active=prod" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

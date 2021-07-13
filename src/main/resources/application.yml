@@ -1,0 +1,21 @@
+
+logging:
+  config: classpath:log4j2-spring.xml
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+name: dev-YAML
+environment: development
+logging:
+  config: classpath:log4j2-spring.xml
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+name: prod-YAML
+environment: production
+logging:
+  config: classpath:log4j2-spring-prod.xml
