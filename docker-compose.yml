@@ -4,6 +4,8 @@ services:
   elasticsearch:
     container_name: es01-test
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.3
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data:rw
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -15,6 +17,8 @@ services:
   kibana:
     container_name: kib01-test
     image: docker.elastic.co/kibana/kibana:7.13.3
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
     environment:
@@ -28,10 +32,7 @@ services:
     container_name: ls01-test
     image: docker.elastic.co/logstash/logstash:7.13.3
     volumes:
-      - type: bind
-        source: ./logstash/pipeline
-        target: /usr/share/logstash/pipeline
-        read_only: true
+        - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - "12201:12201/tcp"
       - "9600:9600"
@@ -39,6 +40,10 @@ services:
       - elk
     depends_on:
       - elasticsearch
+
+volumes:
+  esdata1:
+    driver: local
 
 networks:
   elk:
